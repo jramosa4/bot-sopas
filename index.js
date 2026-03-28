@@ -6,18 +6,8 @@ const fs = require('fs');
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        // Estas líneas son VITALES para que funcione en servidores como Koyeb
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-accelerated-2d-canvas',
-            '--no-first-run',
-            '--no-zygote',
-            '--single-process',
-            '--disable-gpu'
-        ],
-        headless: true // El bot corre en segundo plano sin abrir ventanas
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: true
     }
 });
 
