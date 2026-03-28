@@ -29,8 +29,9 @@ const datosPedido = {};
 const ultimoMensaje = {};
 
 client.on('qr', (qr) => {
-    console.log('--- ESCANEA ESTE QR EN LOS LOGS DE KOYEB ---');
+    // Esto genera un QR más pequeño y compatible
     qrcode.generate(qr, { small: true });
+    console.log('¡ESCANEAME AHORA!');
 });
 
 client.on('ready', () => {
