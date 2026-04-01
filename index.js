@@ -29,9 +29,13 @@ const datosPedido = {};
 const ultimoMensaje = {};
 
 client.on('qr', (qr) => {
-    // Esto genera un QR más pequeño y compatible
+    // 1. Genera el QR en la consola (formato pequeño)
     qrcode.generate(qr, { small: true });
-    console.log('¡ESCANEAME AHORA!');
+    
+    // 2. GENERA UN LINK: Si no ves el dibujo, copia este link en tu navegador
+    console.log('--- COPIA ESTE LINK SI NO VES EL QR ---');
+    console.log(`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qr)}&size=300x300`);
+    console.log('---------------------------------------');
 });
 
 client.on('ready', () => {
