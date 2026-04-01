@@ -1,6 +1,12 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
+const http = require('http');
+// Esto crea una "página" falsa para que Koyeb crea que el bot es una web
+http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Bot de Sopas funcionando');
+}).listen(8000);
 
 // --- CONFIGURACIÓN DE LA NUBE ---
 const client = new Client({
@@ -29,13 +35,11 @@ const datosPedido = {};
 const ultimoMensaje = {};
 
 client.on('qr', (qr) => {
-    // 1. Genera el QR en la consola (formato pequeño)
-    qrcode.generate(qr, { small: true });
-    
-    // 2. GENERA UN LINK: Si no ves el dibujo, copia este link en tu navegador
-    console.log('--- COPIA ESTE LINK SI NO VES EL QR ---');
+    console.log('**********************************************');
+    console.log('¡QR GENERADO! COPIA ESTE LINK YA MISMO:');
     console.log(`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qr)}&size=300x300`);
-    console.log('---------------------------------------');
+    console.log('**********************************************');
+    qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
