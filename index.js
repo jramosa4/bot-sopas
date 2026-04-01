@@ -13,13 +13,15 @@ const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
         headless: true,
-        handleSIGINT: false, // <-- AÑADE ESTA
-        handleSIGTERM: false, // <-- AÑADE ESTA
+        handleSIGINT: false,
+        handleSIGTERM: false,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
             '--disable-gpu',
+            '--no-zygote',       // Añade esta: ahorra RAM
+            '--single-process'   // Añade esta: ahorra RAM
         ]
     }
 });
